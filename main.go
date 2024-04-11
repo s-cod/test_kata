@@ -46,7 +46,10 @@ func calc(s string) {
 		log.Fatal("Выдача паники, так как формат математической операции не удовлетворяет заданию — два операнда и один оператор (+, -, /, *).")
 	}
 
-	typeArgs = SetTypeArgs(args)
+	typeArgs, err := SetTypeArgs(args)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	if typeArgs == "rim" {
 		args[0] = fmt.Sprintf("%v", slices.Index(Rim, args[0])+1)

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"log"
 	"slices"
 	"strconv"
@@ -38,11 +39,11 @@ func Atoi(s string) int {
 	return result
 }
 
-func SetTypeArgs(args []string) string {
+func SetTypeArgs(args []string) (string, error) {
 
 	if slices.Contains(Rim, args[0]) {
 		if slices.Contains(Rim, args[1]) {
-			return "rim"
+			return "rim", nil
 		} else {
 			log.Fatal("Выдача паники, так как используются одновременно разные системы счисления.1")
 		}
@@ -51,11 +52,11 @@ func SetTypeArgs(args []string) string {
 
 	if slices.Contains(Arabic, args[0]) {
 		if slices.Contains(Arabic, args[1]) {
-			return "arabic"
+			return "arabic", nil
 		} else {
 			log.Fatal("Выдача паники, так как используются одновременно разные системы счисления.2")
 		}
 	}
 
-	return ""
+	return "", errors.New("Неверны входные данные")
 }
