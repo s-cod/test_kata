@@ -33,7 +33,7 @@ var Operation = []string{
 func Atoi(s string) int {
 	result, err := strconv.Atoi(s)
 	if err != nil {
-		log.Fatal("Неверныее вычисляемые значения")
+		log.Fatal("Выдача паники, так как строка не является математической операцией.", err)
 	}
 	return result
 }
@@ -44,15 +44,16 @@ func SetTypeArgs(args []string) string {
 		if slices.Contains(Rim, args[1]) {
 			return "rim"
 		} else {
-			log.Fatal("Не верны входные данные: ")
+			log.Fatal("Выдача паники, так как используются одновременно разные системы счисления.1")
 		}
 
 	}
+
 	if slices.Contains(Arabic, args[0]) {
 		if slices.Contains(Arabic, args[1]) {
 			return "arabic"
 		} else {
-			log.Fatal("Не верны входные данные: ")
+			log.Fatal("Выдача паники, так как используются одновременно разные системы счисления.2")
 		}
 	}
 

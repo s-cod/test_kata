@@ -1,16 +1,26 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"log"
+	"os"
 	"slices"
 	"strconv"
 	"strings"
 )
 
 func main() {
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print("Введите значения для расчета: ")
+	text, _ := reader.ReadString('\n')
+	text = strings.TrimRight(text, "\r\n")
+	calc(text)
+}
 
-	text := "IV * X"
+func calc(s string) {
+
+	text := s
 	text = strings.Replace(text, " ", "", -1)
 
 	var currentOperation string
@@ -21,19 +31,19 @@ func main() {
 			if currentOperation == "" {
 				currentOperation = i
 			} else {
-				log.Fatal("Не верны входные данные: " + text)
+				log.Fatal("Выдача паники, так как формат математической операции не удовлетворяет заданию — два операнда и один оператор (+, -, /, *).")
 			}
 		}
 	}
 
 	if currentOperation == "" {
-		log.Fatal("Не верны входные данные: " + text)
+		log.Fatal("Выдача паники, так как строка не является математической операцией.")
 	}
 
 	args := strings.Split(text, currentOperation)
 
 	if len(args) != 2 {
-		log.Fatal("Не верны входные данные: " + text)
+		log.Fatal("Выдача паники, так как формат математической операции не удовлетворяет заданию — два операнда и один оператор (+, -, /, *).")
 	}
 
 	typeArgs = SetTypeArgs(args)
@@ -67,8 +77,8 @@ func main() {
 	if typeArgs == "rim" {
 
 		rimResult := ""
-		if result < 1 || result > 99 {
-			log.Fatal("Неверное римское число")
+		if result < 1 {
+			log.Fatal("Выдача паники, так как в римской системе нет отрицательных чисел.")
 		}
 		if result < 10 {
 			t, _ := strconv.Atoi(fmt.Sprint(result))
@@ -89,5 +99,4 @@ func main() {
 
 		fmt.Println(rimResult)
 	}
-
 }
