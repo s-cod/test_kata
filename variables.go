@@ -2,7 +2,6 @@ package main
 
 import (
 	"errors"
-	"log"
 	"slices"
 	"strconv"
 )
@@ -25,16 +24,13 @@ var Arabic = []string{
 }
 
 var Operation = []string{
-	"+",
-	"-",
-	"/",
-	"*",
+	"+", "-", "/", "*",
 }
 
 func Atoi(s string) int {
 	result, err := strconv.Atoi(s)
 	if err != nil {
-		log.Fatal("Выдача паники, так как строка не является математической операцией.", err)
+		panic("Выдача паники, так как строка не является математической операцией.")
 	}
 	return result
 }
@@ -45,7 +41,7 @@ func SetTypeArgs(args []string) (string, error) {
 		if slices.Contains(Rim, args[1]) {
 			return "rim", nil
 		} else {
-			log.Fatal("Выдача паники, так как используются одновременно разные системы счисления.1")
+			panic("Выдача паники, так как используются одновременно разные системы счисления.")
 		}
 
 	}
@@ -54,7 +50,7 @@ func SetTypeArgs(args []string) (string, error) {
 		if slices.Contains(Arabic, args[1]) {
 			return "arabic", nil
 		} else {
-			log.Fatal("Выдача паники, так как используются одновременно разные системы счисления.2")
+			panic("Выдача паники, так как используются одновременно разные системы счисления.")
 		}
 	}
 

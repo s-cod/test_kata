@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"os"
 	"slices"
 	"strconv"
@@ -31,24 +30,24 @@ func calc(s string) {
 			if currentOperation == "" {
 				currentOperation = i
 			} else {
-				log.Fatal("Выдача паники, так как формат математической операции не удовлетворяет заданию — два операнда и один оператор (+, -, /, *).")
+				panic("Выдача паники, так как формат математической операции не удовлетворяет заданию — два операнда и один оператор (+, -, /, *).")
 			}
 		}
 	}
 
 	if currentOperation == "" {
-		log.Fatal("Выдача паники, так как строка не является математической операцией.")
+		panic("Выдача паники, так как строка не является математической операцией.")
 	}
 
 	args := strings.Split(text, currentOperation)
 
 	if len(args) != 2 {
-		log.Fatal("Выдача паники, так как формат математической операции не удовлетворяет заданию — два операнда и один оператор (+, -, /, *).")
+		panic("Выдача паники, так как формат математической операции не удовлетворяет заданию — два операнда и один оператор (+, -, /, *).")
 	}
 
 	typeArgs, err := SetTypeArgs(args)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 
 	if typeArgs == "rim" {
@@ -65,7 +64,7 @@ func calc(s string) {
 		result = Atoi(args[0]) - Atoi(args[1])
 	case "/":
 		if Atoi(args[1]) == 0 {
-			log.Fatal("На 0 делить нельзя: " + text)
+			panic("На 0 делить нельзя: " + text)
 		}
 		result = Atoi(args[0]) / Atoi(args[1])
 	case "*":
@@ -81,7 +80,7 @@ func calc(s string) {
 
 		rimResult := ""
 		if result < 1 {
-			log.Fatal("Выдача паники, так как в римской системе нет отрицательных чисел.")
+			panic("Выдача паники, так как в римской системе нет отрицательных чисел.")
 		}
 		if result < 10 {
 			t, _ := strconv.Atoi(fmt.Sprint(result))
