@@ -90,7 +90,27 @@ func calc(s string) {
 		numbers := fmt.Sprintf("%v", result)
 
 		t, _ := strconv.Atoi(string(numbers[0]))
-
+		if result < 50 {
+			for i := 0; i < t; i++ {
+				rimResult = rimResult + "X"
+			}
+			t, _ = strconv.Atoi(string(numbers[1]))
+			if t != 0 {
+				rimResult = rimResult + Rim[t-1]
+			}
+			fmt.Println(rimResult)
+			return
+		}
+		if result == 90 {
+			fmt.Println("XC")
+			return
+		}
+		if result == 100 {
+			fmt.Println("C")
+			return
+		}
+		t = t - 5
+		rimResult = "L"
 		for i := 0; i < t; i++ {
 			rimResult = rimResult + "X"
 		}
@@ -98,7 +118,8 @@ func calc(s string) {
 		if t != 0 {
 			rimResult = rimResult + Rim[t-1]
 		}
-
 		fmt.Println(rimResult)
+		return
+
 	}
 }
