@@ -50,12 +50,11 @@ func calc(s string) {
 		panic(err)
 	}
 
-	if typeArgs == "rim" {
+	result := 0
+	if typeArgs == RimType {
 		args[0] = fmt.Sprintf("%v", slices.Index(Rim, args[0])+1)
 		args[1] = fmt.Sprintf("%v", slices.Index(Rim, args[1])+1)
 	}
-
-	result := 0
 
 	switch currentOperation {
 	case "+":
@@ -70,14 +69,13 @@ func calc(s string) {
 	case "*":
 		result = Atoi(args[0]) * Atoi(args[1])
 	default:
-
 	}
-	if typeArgs == "arabic" {
+
+	if typeArgs == ArabicType {
 		fmt.Println(result)
 	}
 
-	if typeArgs == "rim" {
-
+	if typeArgs == RimType {
 		rimResult := ""
 		if result < 1 {
 			panic("Выдача паники, так как в римской системе нет отрицательных чисел.")
@@ -120,6 +118,5 @@ func calc(s string) {
 		}
 		fmt.Println(rimResult)
 		return
-
 	}
 }

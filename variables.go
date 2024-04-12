@@ -27,6 +27,11 @@ var Operation = []string{
 	"+", "-", "/", "*",
 }
 
+const (
+	RimType    = "rim"
+	ArabicType = "arabic"
+)
+
 func Atoi(s string) int {
 	result, err := strconv.Atoi(s)
 	if err != nil {
@@ -39,7 +44,7 @@ func SetTypeArgs(args []string) (string, error) {
 
 	if slices.Contains(Rim, args[0]) {
 		if slices.Contains(Rim, args[1]) {
-			return "rim", nil
+			return RimType, nil
 		} else {
 			panic("Выдача паники, так как используются одновременно разные системы счисления.")
 		}
@@ -48,7 +53,7 @@ func SetTypeArgs(args []string) (string, error) {
 
 	if slices.Contains(Arabic, args[0]) {
 		if slices.Contains(Arabic, args[1]) {
-			return "arabic", nil
+			return ArabicType, nil
 		} else {
 			panic("Выдача паники, так как используются одновременно разные системы счисления.")
 		}
